@@ -22,7 +22,7 @@ activity <- read.csv("activity.csv")
 ```
 <br>
 **Q)** Process/transform the data (if necessary) into a format suitable for your analysis.  
-**A)** Convert the `steps` and `inteval` columns of the `activity` data frame to numerics. Create `activityCC` data frame containing only the complete cases from `activity`.
+**A)** Convert the `steps` and `interval` columns of the `activity` data frame to numerics. Create `activityCC` data frame containing only the complete cases from `activity`.
 ```{r}
 activity$steps <- as.numeric(as.character(activity$steps))
 activity$interval <- as.numeric(as.character(activity$interval))
@@ -43,12 +43,12 @@ qplot(
 ```
 <br>
 **Q)** Calculate and report the mean and median total number of steps taken per day.  
-**A)** Create data frame `stepsPerDaySummary` by calculating the mean and median of steps per day and. Print `stepsPerDaySummary` using `xtable()`.
+**A)** Create data frame `stepsPerDaySummary` by calculating the mean and median of steps per day. Print data frame `stepsPerDaySummary` using `xtable()`.
 ```{r, results="asis"}
 stepsPerDaySummary <- data.frame(mean(stepsPerDayTotal), median(stepsPerDayTotal))
 names(stepsPerDaySummary) <- c('Mean Steps per Day', 'Median Steps per Day')
 rownames(stepsPerDaySummary)[1] <- 'Steps with NA values removed'
-print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='center', border='2px'")
+print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='center', border='2px', width='600px'")
 ```
 <br>
 
@@ -119,7 +119,7 @@ stepsPerDaySummary <- rbind(
   stepsPerDaySummary, 
   c(mean(stepsPerDayTotalImputed), median(stepsPerDayTotalImputed)))
 rownames(stepsPerDaySummary)[2] <- 'Steps with NA values imputed'
-print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='center', border='2px'")
+print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='center', border='2px', width='600px'")
 ```
 <br>
 <br>

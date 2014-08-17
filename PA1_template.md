@@ -19,7 +19,7 @@ activity <- read.csv("activity.csv")
 ```
 <br>
 **Q)** Process/transform the data (if necessary) into a format suitable for your analysis.  
-**A)** Convert the `steps` and `inteval` columns of the `activity` data frame to numerics. Create `activityCC` data frame containing only the complete cases from `activity`.
+**A)** Convert the `steps` and `interval` columns of the `activity` data frame to numerics. Create `activityCC` data frame containing only the complete cases from `activity`.
 
 ```r
 activity$steps <- as.numeric(as.character(activity$steps))
@@ -44,18 +44,18 @@ qplot(
 <img src="./PA1_template_files/figure-html/ActivityPerDay.png" title="plot of chunk ActivityPerDay" alt="plot of chunk ActivityPerDay" style="display: block; margin: auto;" />
 <br>
 **Q)** Calculate and report the mean and median total number of steps taken per day.  
-**A)** Create data frame `stepsPerDaySummary` by calculating the mean and median of steps per day and. Print `stepsPerDaySummary` using `xtable()`.
+**A)** Create data frame `stepsPerDaySummary` by calculating the mean and median of steps per day. Print data frame `stepsPerDaySummary` using `xtable()`.
 
 ```r
 stepsPerDaySummary <- data.frame(mean(stepsPerDayTotal), median(stepsPerDayTotal))
 names(stepsPerDaySummary) <- c('Mean Steps per Day', 'Median Steps per Day')
 rownames(stepsPerDaySummary)[1] <- 'Steps with NA values removed'
-print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='center', border='2px'")
+print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='center', border='2px', width='600px'")
 ```
 
 <!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
-<!-- Mon Aug 18 08:16:27 2014 -->
-<TABLE align='center', border='2px'>
+<!-- Mon Aug 18 08:37:13 2014 -->
+<TABLE align='center', border='2px', width='600px'>
 <TR> <TH>  </TH> <TH> Mean Steps per Day </TH> <TH> Median Steps per Day </TH>  </TR>
   <TR> <TD align="right"> Steps with NA values removed </TD> <TD align="right"> 10766.19 </TD> <TD align="right"> 10765.00 </TD> </TR>
    </TABLE>
@@ -139,12 +139,12 @@ stepsPerDaySummary <- rbind(
   stepsPerDaySummary, 
   c(mean(stepsPerDayTotalImputed), median(stepsPerDayTotalImputed)))
 rownames(stepsPerDaySummary)[2] <- 'Steps with NA values imputed'
-print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='center', border='2px'")
+print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='center', border='2px', width='600px'")
 ```
 
 <!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
-<!-- Mon Aug 18 08:16:28 2014 -->
-<TABLE align='center', border='2px'>
+<!-- Mon Aug 18 08:37:14 2014 -->
+<TABLE align='center', border='2px', width='600px'>
 <TR> <TH>  </TH> <TH> Mean Steps per Day </TH> <TH> Median Steps per Day </TH>  </TR>
   <TR> <TD align="right"> Steps with NA values removed </TD> <TD align="right"> 10766.19 </TD> <TD align="right"> 10765.00 </TD> </TR>
   <TR> <TD align="right"> Steps with NA values imputed </TD> <TD align="right"> 10766.19 </TD> <TD align="right"> 10766.19 </TD> </TR>
