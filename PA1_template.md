@@ -32,6 +32,7 @@ activityCC <- activity[complete.cases(activity), ]
 
 ```r
 stepsPerDayTotal <- tapply(activityCC$steps, factor(activityCC$date), sum, na.rm=T)
+
 qplot(
   stepsPerDayTotal, 
   main='Activity per Day', 
@@ -53,7 +54,7 @@ print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='cen
 ```
 
 <!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
-<!-- Sun Aug 17 23:43:28 2014 -->
+<!-- Sun Aug 17 23:52:29 2014 -->
 <TABLE align='center', border='2px'>
 <TR> <TH>  </TH> <TH> Mean Steps per Day </TH> <TH> Median Steps per Day </TH>  </TR>
   <TR> <TD align="right"> Steps with NA values removed </TD> <TD align="right"> 10766.19 </TD> <TD align="right"> 10765.00 </TD> </TR>
@@ -66,6 +67,7 @@ print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='cen
 ```r
 stepsPerIntervalMean <- aggregate(steps ~ interval, activityCC, mean, na.action=na.omit)
 names(stepsPerIntervalMean)[2] <- 'steps_mean'
+
 ggplot(stepsPerIntervalMean, aes(x=(interval), y=(steps_mean), colour=TRUE), guide=FALSE) +
   geom_line() + 
   guides(fill=F, colour=FALSE) +
@@ -98,7 +100,12 @@ Per the `countNA` variable we have **2304** missing values in our`activity` data
 
 ```r
 activity <- merge(activity, stepsPerIntervalMean)
-activity <- cbind(activity, steps_imputed=ifelse(is.na(activity$steps), activity$steps_mean,activity$steps))
+activity <- cbind(
+  activity, 
+  steps_imputed=ifelse(
+    is.na(activity$steps), 
+    activity$steps_mean,
+    activity$steps))
 ```
 
 3. Create a new dataset that is equal to the original dataset but with the missing data filled in.
@@ -114,6 +121,7 @@ names(activityImpute)[3] <- 'steps'
 
 ```r
 stepsPerDayTotalImputed <- tapply(activityImpute$steps, factor(activityImpute$date), sum, na.rm=T)
+
 qplot(
   stepsPerDayTotalImputed, 
   main='Activity per Day (Imputed)', 
@@ -128,13 +136,16 @@ qplot(
 - Calculate the mean and median over the array `stepsPerDayTotalImputed` and row bind them to `stepsPerDaySummary`. Print the resulting `stepsPerDaySummary` state using `xtable`.
 
 ```r
-stepsPerDaySummary <- rbind(stepsPerDaySummary, c(mean(stepsPerDayTotalImputed), median(stepsPerDayTotalImputed)))
+stepsPerDaySummary <- rbind(
+  stepsPerDaySummary, 
+  c(mean(stepsPerDayTotalImputed), median(stepsPerDayTotalImputed)))
+
 rownames(stepsPerDaySummary)[2] <- 'Steps with NA values imputed'
 print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='center', border='2px'")
 ```
 
 <!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
-<!-- Sun Aug 17 23:43:29 2014 -->
+<!-- Sun Aug 17 23:52:30 2014 -->
 <TABLE align='center', border='2px'>
 <TR> <TH>  </TH> <TH> Mean Steps per Day </TH> <TH> Median Steps per Day </TH>  </TR>
   <TR> <TD align="right"> Steps with NA values removed </TD> <TD align="right"> 10766.19 </TD> <TD align="right"> 10765.00 </TD> </TR>
@@ -151,12 +162,18 @@ print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='cen
 
 ```r
 activityImpute <- cbind(activityImpute, weekday=weekdays(as.Date(activityImpute$date)))
-activityImpute <- cbind(activityImpute, daytype= 
-                          ifelse(
-                            activityImpute$weekday == 'Saturday' | activityImpute$weekday == 'Sunday',
-                            'Weekend', 
-                            'Weekday'))
-stepsPerIntervalMeanImpute <- aggregate(steps ~ interval + daytype, activityImpute, mean, na.action=na.omit)
+activityImpute <- cbind(
+  activityImpute, 
+  daytype= ifelse(
+    activityImpute$weekday == 'Saturday' | activityImpute$weekday == 'Sunday',
+    'Weekend', 
+    'Weekday'))
+
+stepsPerIntervalMeanImpute <- aggregate(
+  steps ~ interval + daytype, 
+  activityImpute, 
+  mean, 
+  na.action=na.omit)
 ```
 
 2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).

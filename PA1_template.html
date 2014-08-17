@@ -92,6 +92,7 @@ activityCC &lt;- activity[complete.cases(activity), ]</code></pre>
 <li>Create a new array <code>stepsPerDayTotal</code> from <code>activityCC</code> taking the sum of the steps per day. Plot the daily activity histogram using <code>stepsPerDayTotal</code>.</li>
 </ul>
 <pre class="r"><code>stepsPerDayTotal &lt;- tapply(activityCC$steps, factor(activityCC$date), sum, na.rm=T)
+
 qplot(
   stepsPerDayTotal, 
   main='Activity per Day', 
@@ -110,7 +111,7 @@ names(stepsPerDaySummary) &lt;- c('Mean Steps per Day', 'Median Steps per Day')
 rownames(stepsPerDaySummary)[1] &lt;- 'Steps with NA values removed'
 print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes=&quot;align='center', border='2px'&quot;)</code></pre>
 <!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
-<!-- Sun Aug 17 23:43:28 2014 -->
+<!-- Sun Aug 17 23:52:29 2014 -->
 <TABLE align="center" , border="2px">
 <TR> <TH>  </TH> <TH> 
 Mean Steps per Day
@@ -137,6 +138,7 @@ Steps with NA values removed
 </ul>
 <pre class="r"><code>stepsPerIntervalMean &lt;- aggregate(steps ~ interval, activityCC, mean, na.action=na.omit)
 names(stepsPerIntervalMean)[2] &lt;- 'steps_mean'
+
 ggplot(stepsPerIntervalMean, aes(x=(interval), y=(steps_mean), colour=TRUE), guide=FALSE) +
   geom_line() + 
   guides(fill=F, colour=FALSE) +
@@ -170,7 +172,12 @@ ggplot(stepsPerIntervalMean, aes(x=(interval), y=(steps_mean), colour=TRUE), gui
 <li>Let’s adopt a strategy of defaulting the missing items to the mean per interval recorded in the <code>stepsPerIntervalMean</code> data frame. Appended the column <code>steps_imputed</code> to our <code>activity</code> data frame.</li>
 </ul>
 <pre class="r"><code>activity &lt;- merge(activity, stepsPerIntervalMean)
-activity &lt;- cbind(activity, steps_imputed=ifelse(is.na(activity$steps), activity$steps_mean,activity$steps))</code></pre>
+activity &lt;- cbind(
+  activity, 
+  steps_imputed=ifelse(
+    is.na(activity$steps), 
+    activity$steps_mean,
+    activity$steps))</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Create a new dataset that is equal to the original dataset but with the missing data filled in.</li>
 </ol>
@@ -186,6 +193,7 @@ names(activityImpute)[3] &lt;- 'steps'</code></pre>
 <li>Create a new array <code>stepsPerDayTotalImputed</code> from <code>activityImpute</code> taking the sum of the steps per day. Plot the daily activity histogram using <code>stepsPerDayTotalImputed</code> as input.</li>
 </ul>
 <pre class="r"><code>stepsPerDayTotalImputed &lt;- tapply(activityImpute$steps, factor(activityImpute$date), sum, na.rm=T)
+
 qplot(
   stepsPerDayTotalImputed, 
   main='Activity per Day (Imputed)', 
@@ -199,11 +207,14 @@ qplot(
 <ul>
 <li>Calculate the mean and median over the array <code>stepsPerDayTotalImputed</code> and row bind them to <code>stepsPerDaySummary</code>. Print the resulting <code>stepsPerDaySummary</code> state using <code>xtable</code>.</li>
 </ul>
-<pre class="r"><code>stepsPerDaySummary &lt;- rbind(stepsPerDaySummary, c(mean(stepsPerDayTotalImputed), median(stepsPerDayTotalImputed)))
+<pre class="r"><code>stepsPerDaySummary &lt;- rbind(
+  stepsPerDaySummary, 
+  c(mean(stepsPerDayTotalImputed), median(stepsPerDayTotalImputed)))
+
 rownames(stepsPerDaySummary)[2] &lt;- 'Steps with NA values imputed'
 print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes=&quot;align='center', border='2px'&quot;)</code></pre>
 <!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
-<!-- Sun Aug 17 23:43:29 2014 -->
+<!-- Sun Aug 17 23:52:30 2014 -->
 <TABLE align="center" , border="2px">
 <TR> <TH>  </TH> <TH> 
 Mean Steps per Day
@@ -239,12 +250,18 @@ Steps with NA values imputed
 <li>Append a <code>weekday</code> column to <code>activityImpute</code>. Use the <code>weekday</code> column to determine and then append the <code>daytype</code> column. Calculate the mean steps per interval over the newly imputed values and store them in data frame <code>stepsPerIntervalMeanImpute</code>.</li>
 </ul>
 <pre class="r"><code>activityImpute &lt;- cbind(activityImpute, weekday=weekdays(as.Date(activityImpute$date)))
-activityImpute &lt;- cbind(activityImpute, daytype= 
-                          ifelse(
-                            activityImpute$weekday == 'Saturday' | activityImpute$weekday == 'Sunday',
-                            'Weekend', 
-                            'Weekday'))
-stepsPerIntervalMeanImpute &lt;- aggregate(steps ~ interval + daytype, activityImpute, mean, na.action=na.omit)</code></pre>
+activityImpute &lt;- cbind(
+  activityImpute, 
+  daytype= ifelse(
+    activityImpute$weekday == 'Saturday' | activityImpute$weekday == 'Sunday',
+    'Weekend', 
+    'Weekday'))
+
+stepsPerIntervalMeanImpute &lt;- aggregate(
+  steps ~ interval + daytype, 
+  activityImpute, 
+  mean, 
+  na.action=na.omit)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Make a panel plot containing a time series plot (i.e. type = “l”) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).</li>
 </ol>
