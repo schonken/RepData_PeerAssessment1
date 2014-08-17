@@ -1,6 +1,6 @@
 # Reproducible Research: Peer Assessment 1
 
-Start by initializing a few R libraries. Then default R code chucks to be echoed and figures to be centered.
+Start by initializing a few R libraries. Turn echo on for R code chunks, center figures and suppress messages.
 
 ```r
 library(ggplot2)
@@ -54,7 +54,7 @@ print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='cen
 ```
 
 <!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
-<!-- Mon Aug 18 06:19:24 2014 -->
+<!-- Mon Aug 18 08:16:27 2014 -->
 <TABLE align='center', border='2px'>
 <TR> <TH>  </TH> <TH> Mean Steps per Day </TH> <TH> Median Steps per Day </TH>  </TR>
   <TR> <TD align="right"> Steps with NA values removed </TD> <TD align="right"> 10766.19 </TD> <TD align="right"> 10765.00 </TD> </TR>
@@ -93,7 +93,7 @@ The peak activity interval returned in the `peakInterval` variable is **835**.
 ```r
 countNA <- nrow(activity) - nrow(activityCC)
 ```
-Per the `countNA` variable we have **2304** missing values in the `activity` data frame.
+Per the `countNA` variable we have **2304** missing values in the `activity` data frame.  
 <br>
 **Q)** Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.  
 **A)** Let's adopt a strategy of defaulting the missing items to the mean per interval recorded in the `stepsPerIntervalMean` data frame. Appended the `steps_imputed` column to the `activity` data frame.
@@ -143,7 +143,7 @@ print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='cen
 ```
 
 <!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
-<!-- Mon Aug 18 06:19:25 2014 -->
+<!-- Mon Aug 18 08:16:28 2014 -->
 <TABLE align='center', border='2px'>
 <TR> <TH>  </TH> <TH> Mean Steps per Day </TH> <TH> Median Steps per Day </TH>  </TR>
   <TR> <TD align="right"> Steps with NA values removed </TD> <TD align="right"> 10766.19 </TD> <TD align="right"> 10765.00 </TD> </TR>

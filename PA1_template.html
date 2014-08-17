@@ -56,7 +56,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 
 
-<p>Start by initializing a few R libraries. Then default R code chucks to be echoed and figures to be centered.</p>
+<p>Start by initializing a few R libraries. Turn echo on for R code chunks, center figures and suppress messages.</p>
 <pre class="r"><code>library(ggplot2)
 library(knitr)
 library(xtable)
@@ -87,7 +87,7 @@ names(stepsPerDaySummary) &lt;- c('Mean Steps per Day', 'Median Steps per Day')
 rownames(stepsPerDaySummary)[1] &lt;- 'Steps with NA values removed'
 print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes=&quot;align='center', border='2px'&quot;)</code></pre>
 <!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
-<!-- Mon Aug 18 06:19:24 2014 -->
+<!-- Mon Aug 18 08:16:27 2014 -->
 <TABLE align="center" , border="2px">
 <TR> <TH>  </TH> <TH> 
 Mean Steps per Day
@@ -123,7 +123,7 @@ ggplot(stepsPerIntervalMean, aes(x=(interval), y=(steps_mean), colour=TRUE), gui
 <h3>Imputing missing values</h3>
 <p><strong>Q)</strong> Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with <code>NA</code>s).<br /><strong>A)</strong> We have some missing values in the <code>activity</code> data frame, let’s figure out how many.</p>
 <pre class="r"><code>countNA &lt;- nrow(activity) - nrow(activityCC)</code></pre>
-<p>Per the <code>countNA</code> variable we have <strong>2304</strong> missing values in the <code>activity</code> data frame. <br> <strong>Q)</strong> Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.<br /><strong>A)</strong> Let’s adopt a strategy of defaulting the missing items to the mean per interval recorded in the <code>stepsPerIntervalMean</code> data frame. Appended the <code>steps_imputed</code> column to the <code>activity</code> data frame.</p>
+<p>Per the <code>countNA</code> variable we have <strong>2304</strong> missing values in the <code>activity</code> data frame.<br /><br> <strong>Q)</strong> Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.<br /><strong>A)</strong> Let’s adopt a strategy of defaulting the missing items to the mean per interval recorded in the <code>stepsPerIntervalMean</code> data frame. Appended the <code>steps_imputed</code> column to the <code>activity</code> data frame.</p>
 <pre class="r"><code>activity &lt;- merge(activity, stepsPerIntervalMean)
 activity &lt;- cbind(
   activity, 
@@ -149,7 +149,7 @@ qplot(
 rownames(stepsPerDaySummary)[2] &lt;- 'Steps with NA values imputed'
 print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes=&quot;align='center', border='2px'&quot;)</code></pre>
 <!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
-<!-- Mon Aug 18 06:19:25 2014 -->
+<!-- Mon Aug 18 08:16:28 2014 -->
 <TABLE align="center" , border="2px">
 <TR> <TH>  </TH> <TH> 
 Mean Steps per Day
