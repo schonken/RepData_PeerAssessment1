@@ -31,7 +31,7 @@ activityCC <- activity[complete.cases(activity), ]
 ### What is the mean total number of steps taken per day?
 1. Make a histogram of the total number of steps taken each day
 - Create a new array `stepsPerDayTotal` from `activityCC` taking the sum of the steps per day. Plot the daily activity histogram using `stepsPerDayTotal`.
-```{r}
+```{r ActivityPerDay}
 stepsPerDayTotal <- tapply(activityCC$steps, factor(activityCC$date), sum, na.rm=T)
 qplot(
   stepsPerDayTotal, 
@@ -53,7 +53,7 @@ print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='cen
 ### What is the mean daily activity pattern?
 1. Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 - Create a new data frame `stepsPerIntervalMean`, mapping date and mean(steps) from `activityCC`. Plot the `stepsPerIntervalMean` data frame in time series.
-```{r}
+```{r MeanActivityPerInterval}
 stepsPerIntervalMean <- aggregate(steps ~ interval, activityCC, mean, na.action=na.omit)
 names(stepsPerIntervalMean)[2] <- 'steps_mean'
 ggplot(stepsPerIntervalMean, aes(x=(interval), y=(steps_mean), colour=TRUE), guide=FALSE) +
@@ -95,7 +95,7 @@ names(activityImpute)[3] <- 'steps'
 
 4. Make a histogram of the total number of steps taken each day.
 - Create a new array `stepsPerDayTotalImputed` from `activityImpute` taking the sum of the steps per day. Plot the daily activity histogram using `stepsPerDayTotalImputed` as input.
-```{r}
+```{r ActivityPerDayImputed}
 stepsPerDayTotalImputed <- tapply(activityImpute$steps, factor(activityImpute$date), sum, na.rm=T)
 qplot(
   stepsPerDayTotalImputed, 
@@ -132,7 +132,7 @@ stepsPerIntervalMeanImpute <- aggregate(steps ~ interval + daytype, activityImpu
 
 2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
 - Plot the comparison between weekdays and weekends using our `stepsPerIntervalMeanImpute` data frame as input.
-```{r}
+```{r WeekdaysVsWeekendsActivityImputed}
 ggplot(stepsPerIntervalMeanImpute, aes(x=(interval), y=(steps), colour=daytype), guide=FALSE) +
   geom_line() + 
   facet_grid(daytype ~ .)  + 

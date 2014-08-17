@@ -40,7 +40,7 @@ qplot(
   type="l")
 ```
 
-<img src="./PA1_template_files/figure-html/unnamed-chunk-4.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+<img src="./PA1_template_files/figure-html/ActivityPerDay.png" title="plot of chunk ActivityPerDay" alt="plot of chunk ActivityPerDay" style="display: block; margin: auto;" />
 
 2. Calculate and report the mean and median total number of steps taken per day
 - Create data frame `stepsPerDaySummary` by calculating the mean and median of steps per day and. Print `stepsPerDaySummary` unsion `xtable`.
@@ -53,7 +53,7 @@ print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='cen
 ```
 
 <!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
-<!-- Sun Aug 17 23:30:48 2014 -->
+<!-- Sun Aug 17 23:43:28 2014 -->
 <TABLE align='center', border='2px'>
 <TR> <TH>  </TH> <TH> Mean Steps per Day </TH> <TH> Median Steps per Day </TH>  </TR>
   <TR> <TD align="right"> Steps with NA values removed </TD> <TD align="right"> 10766.19 </TD> <TD align="right"> 10765.00 </TD> </TR>
@@ -74,7 +74,7 @@ ggplot(stepsPerIntervalMean, aes(x=(interval), y=(steps_mean), colour=TRUE), gui
   xlab('Interval')
 ```
 
-<img src="./PA1_template_files/figure-html/unnamed-chunk-6.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
+<img src="./PA1_template_files/figure-html/MeanActivityPerInterval.png" title="plot of chunk MeanActivityPerInterval" alt="plot of chunk MeanActivityPerInterval" style="display: block; margin: auto;" />
 
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 - Find the peak activity interval over the mean steps per interval data frame.
@@ -122,7 +122,7 @@ qplot(
   type="l")
 ```
 
-<img src="./PA1_template_files/figure-html/unnamed-chunk-11.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
+<img src="./PA1_template_files/figure-html/ActivityPerDayImputed.png" title="plot of chunk ActivityPerDayImputed" alt="plot of chunk ActivityPerDayImputed" style="display: block; margin: auto;" />
 
 5. Calculate and report the mean and median total number of steps taken per day. 
 - Calculate the mean and median over the array `stepsPerDayTotalImputed` and row bind them to `stepsPerDaySummary`. Print the resulting `stepsPerDaySummary` state using `xtable`.
@@ -134,7 +134,7 @@ print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='cen
 ```
 
 <!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
-<!-- Sun Aug 17 23:30:49 2014 -->
+<!-- Sun Aug 17 23:43:29 2014 -->
 <TABLE align='center', border='2px'>
 <TR> <TH>  </TH> <TH> Mean Steps per Day </TH> <TH> Median Steps per Day </TH>  </TR>
   <TR> <TD align="right"> Steps with NA values removed </TD> <TD align="right"> 10766.19 </TD> <TD align="right"> 10765.00 </TD> </TR>
@@ -172,4 +172,4 @@ ggplot(stepsPerIntervalMeanImpute, aes(x=(interval), y=(steps), colour=daytype),
   xlab('Interval')  
 ```
 
-<img src="./PA1_template_files/figure-html/unnamed-chunk-14.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" style="display: block; margin: auto;" />
+<img src="./PA1_template_files/figure-html/WeekdaysVsWeekendsActivityImputed.png" title="plot of chunk WeekdaysVsWeekendsActivityImputed" alt="plot of chunk WeekdaysVsWeekendsActivityImputed" style="display: block; margin: auto;" />
