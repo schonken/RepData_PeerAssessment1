@@ -85,10 +85,10 @@ qplot(
 <pre class="r"><code>stepsPerDaySummary &lt;- data.frame(mean(stepsPerDayTotal), median(stepsPerDayTotal))
 names(stepsPerDaySummary) &lt;- c('Mean Steps per Day', 'Median Steps per Day')
 rownames(stepsPerDaySummary)[1] &lt;- 'Steps with NA values removed'
-print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes=&quot;align='center', border='2px', width='600px'&quot;)</code></pre>
+print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes=&quot;align='center', border='1px'&quot;)</code></pre>
 <!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
-<!-- Mon Aug 18 08:37:13 2014 -->
-<TABLE align="center" , border="2px" , width="600px">
+<!-- Mon Aug 18 08:41:21 2014 -->
+<TABLE align="center" , border="1px">
 <TR> <TH>  </TH> <TH> 
 Mean Steps per Day
 </TH> <TH> 
@@ -147,10 +147,10 @@ qplot(
   stepsPerDaySummary, 
   c(mean(stepsPerDayTotalImputed), median(stepsPerDayTotalImputed)))
 rownames(stepsPerDaySummary)[2] &lt;- 'Steps with NA values imputed'
-print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes=&quot;align='center', border='2px', width='600px'&quot;)</code></pre>
+print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes=&quot;align='center', border='1px'&quot;)</code></pre>
 <!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
-<!-- Mon Aug 18 08:37:14 2014 -->
-<TABLE align="center" , border="2px" , width="600px">
+<!-- Mon Aug 18 08:41:21 2014 -->
+<TABLE align="center" , border="1px">
 <TR> <TH>  </TH> <TH> 
 Mean Steps per Day
 </TH> <TH> 

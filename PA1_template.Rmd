@@ -48,7 +48,7 @@ qplot(
 stepsPerDaySummary <- data.frame(mean(stepsPerDayTotal), median(stepsPerDayTotal))
 names(stepsPerDaySummary) <- c('Mean Steps per Day', 'Median Steps per Day')
 rownames(stepsPerDaySummary)[1] <- 'Steps with NA values removed'
-print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='center', border='2px', width='600px'")
+print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='center', border='1px'")
 ```
 <br>
 
@@ -119,7 +119,7 @@ stepsPerDaySummary <- rbind(
   stepsPerDaySummary, 
   c(mean(stepsPerDayTotalImputed), median(stepsPerDayTotalImputed)))
 rownames(stepsPerDaySummary)[2] <- 'Steps with NA values imputed'
-print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='center', border='2px', width='600px'")
+print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='center', border='1px'")
 ```
 <br>
 <br>

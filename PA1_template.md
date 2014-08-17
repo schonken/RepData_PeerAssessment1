@@ -50,12 +50,12 @@ qplot(
 stepsPerDaySummary <- data.frame(mean(stepsPerDayTotal), median(stepsPerDayTotal))
 names(stepsPerDaySummary) <- c('Mean Steps per Day', 'Median Steps per Day')
 rownames(stepsPerDaySummary)[1] <- 'Steps with NA values removed'
-print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='center', border='2px', width='600px'")
+print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='center', border='1px'")
 ```
 
 <!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
-<!-- Mon Aug 18 08:37:13 2014 -->
-<TABLE align='center', border='2px', width='600px'>
+<!-- Mon Aug 18 08:41:21 2014 -->
+<TABLE align='center', border='1px'>
 <TR> <TH>  </TH> <TH> Mean Steps per Day </TH> <TH> Median Steps per Day </TH>  </TR>
   <TR> <TD align="right"> Steps with NA values removed </TD> <TD align="right"> 10766.19 </TD> <TD align="right"> 10765.00 </TD> </TR>
    </TABLE>
@@ -139,12 +139,12 @@ stepsPerDaySummary <- rbind(
   stepsPerDaySummary, 
   c(mean(stepsPerDayTotalImputed), median(stepsPerDayTotalImputed)))
 rownames(stepsPerDaySummary)[2] <- 'Steps with NA values imputed'
-print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='center', border='2px', width='600px'")
+print(xtable(stepsPerDaySummary), type='HTML', html.table.attributes="align='center', border='1px'")
 ```
 
 <!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
-<!-- Mon Aug 18 08:37:14 2014 -->
-<TABLE align='center', border='2px', width='600px'>
+<!-- Mon Aug 18 08:41:21 2014 -->
+<TABLE align='center', border='1px'>
 <TR> <TH>  </TH> <TH> Mean Steps per Day </TH> <TH> Median Steps per Day </TH>  </TR>
   <TR> <TD align="right"> Steps with NA values removed </TD> <TD align="right"> 10766.19 </TD> <TD align="right"> 10765.00 </TD> </TR>
   <TR> <TD align="right"> Steps with NA values imputed </TD> <TD align="right"> 10766.19 </TD> <TD align="right"> 10766.19 </TD> </TR>
